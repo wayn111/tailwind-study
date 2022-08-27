@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import Home from '../views/home.vue'
 import About from '../views/about.vue'
 import Login from '../views/login.vue'
+import Register from '../views/register.vue'
 import axios from 'axios'
 
 // 2. 定义一些路由
@@ -12,6 +13,11 @@ const routes = [
         path: "/",
         name: "home",
         component: Home
+    },
+    {
+        path: "/register",
+        name: "register",
+        component: Register
     },
     {
         path: "/login",
