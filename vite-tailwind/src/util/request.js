@@ -5,7 +5,8 @@ import { ElMessage, ElMessageBox } from 'element-plus'
 import { getLocalStorage } from '../util/localStorage'
 import { getToken, removeToken } from '../util/auth'
 
-let baseURL = "http://localhost:8080"
+let baseURL = import.meta.env.VITE_APP_URL
+console.log(import.meta.env)
 
 //创建axios实例
 const service = axios.create({
