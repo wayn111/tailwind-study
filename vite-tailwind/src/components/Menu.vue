@@ -1,6 +1,7 @@
 <script setup>
 import { ref } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
+import { removeToken } from '../util/auth'
 
 const router = useRouter()
 const route = useRoute()

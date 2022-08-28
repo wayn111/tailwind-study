@@ -1,6 +1,6 @@
 <template>
     <div class="p-5 h-screen w-full">
-        <Menu path="home"/>
+        <Menu path="home" />
 
         <h1 class="text-2xl font-bold mt-4 text-center">
             欢迎来到个人主页
@@ -16,7 +16,7 @@
             </el-form-item>
             <el-alert type="success" class="text-left" show-icon :closable="true">
                 <h1 class="font-bold title-alert">oa token获取方式</h1>
-                <p>1:登录oa系统  2:打开F12开发者工具  3:拷贝任意接口请求头中的X-Access-Token值</p>
+                <p>1:登录oa系统 2:打开F12开发者工具 3:拷贝任意接口请求头中的X-Access-Token值</p>
             </el-alert>
             <el-form-item label="oa token" class="mt-3" prop="token">
                 <el-input v-model="formLabelAlign.token" placeholder="请填写你oa系统token" />
@@ -25,7 +25,8 @@
                 <h1 class="font-bold title-alert">通知类型说明</h1>
                 <p>飞书：发送通知到飞书群中</p>
                 <p>邮箱：发送通知到指定邮箱</p>
-                <p>企业微信账号：下载企业微信，加入我的企业，可以在微信中接受私聊消息</p>
+                <p @click="goQiyeweixin" class="cursor-pointer underline decoration-dashed decoration-sky-500  underline-offset-4">
+                    企业微信账号：下载企业微信，加入我的企业，可以在微信中接受私聊消息，点击查看教程</p>
             </el-alert>
             <el-form-item label="通知类型" class="mt-3" prop="notifyTypeList">
                 <el-checkbox-group v-model="formLabelAlign.notifyTypeList">
@@ -116,6 +117,12 @@ const submitForm = async () => {
         } else {
             console.log('error submit!', fields)
         }
+    })
+}
+
+function goQiyeweixin() {
+    router.push({
+        name: 'joinQiyiweixin'
     })
 }
 
