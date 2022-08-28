@@ -24,14 +24,18 @@
             <el-form-item label="工号" prop="jobNo">
                 <el-input v-model="formLabelAlign.jobNo" placeholder="请填写你的工号" />
             </el-form-item>
-            <el-form-item label="oa token" prop="token">
+            <el-alert type="success" class="text-left" show-icon :closable="true">
+                <h1 class="font-bold title-alert">oa token获取方式</h1>
+                <p>1:登录oa系统  2:打开F12开发者工具  3:拷贝任意接口请求头中的X-Access-Token值</p>
+            </el-alert>
+            <el-form-item label="oa token" class="mt-3" prop="token">
                 <el-input v-model="formLabelAlign.token" placeholder="请填写你oa系统token" />
             </el-form-item>
             <el-alert type="success" class="text-left" show-icon :closable="true">
-                <h1 class="font-bold notify-alert">通知类型</h1>
+                <h1 class="font-bold title-alert">通知类型说明</h1>
                 <p>飞书：发送通知到飞书群中</p>
                 <p>邮箱：发送通知到指定邮箱</p>
-                <p>企业微信账号：下载企业微信，加入我的企业，可以再微信中接受私聊消息</p>
+                <p>企业微信账号：下载企业微信，加入我的企业，可以在微信中接受私聊消息</p>
             </el-alert>
             <el-form-item label="通知类型" class="mt-3" prop="notifyTypeList">
                 <el-checkbox-group v-model="formLabelAlign.notifyTypeList">
@@ -46,10 +50,10 @@
             <el-form-item label="企业微信账号">
                 <el-input v-model="formLabelAlign.qiyeweixinAccount" placeholder="通知类型选企业微信时，联系管理员获取" />
             </el-form-item>
-            <el-form-item>
-                    <el-affix position="bottom" :offset="20">
-                        <el-button size="large" round @click="submitForm()">点击提交</el-button>
-                    </el-affix>
+            <el-form-item class="btn">
+                <el-affix position="bottom" :offset="20">
+                    <el-button size="large" round @click="submitForm()">点击提交</el-button>
+                </el-affix>
             </el-form-item>
         </el-form>
     </div>
@@ -164,7 +168,11 @@ const handleSelect = (key, keyPath) => {
     font-size: 20px;
 }
 
-.notify-alert {
+.title-alert {
     font-size: 1rem;
+}
+
+.btn :deep() .el-form-item__content {
+    justify-content: right;
 }
 </style>
