@@ -1,15 +1,6 @@
 <template>
     <div class="p-5 h-screen w-full text-center">
-        <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" :ellipsis="false"
-            @select="handleSelect">
-            <div class="flex-grow" />
-            <el-menu-item index="home">主页</el-menu-item>
-            <el-sub-menu index="2-4">
-                <template #title>我的空间</template>
-                <el-menu-item index="about">关于</el-menu-item>
-                <el-menu-item index="logout">退出登录</el-menu-item>
-            </el-sub-menu>
-        </el-menu>
+        <Menu path="about"/>
 
         <h1 class="text-2xl font-bold mt-5">
             oa互助更新日志
@@ -29,36 +20,7 @@ import { reactive, ref, onMounted } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
 import { removeToken } from '../util/auth'
 import { ElMessage, ElMessageBox, ElLoading } from 'element-plus'
-
-const router = useRouter()
-const route = useRoute()
-const activeIndex = ref('about')
-const handleSelect = (key, keyPath) => {
-    if (key === 'logout') {
-        ElMessageBox.confirm(
-            '你确定要退出登录吗？',
-            'Warning',
-            {
-                confirmButtonText: 'OK',
-                cancelButtonText: 'Cancel',
-                type: 'warning',
-            }
-        )
-            .then(async () => {
-                removeToken()
-                router.push({
-                    name: 'login'
-                })
-            })
-            .catch(() => {
-            })
-
-    } else {
-        router.push({
-            name: key
-        })
-    }
-}
+import Menu from '../components/Menu.vue'
 
 </script>
 

@@ -3,6 +3,7 @@ import Home from '../views/home.vue'
 import About from '../views/about.vue'
 import Login from '../views/login.vue'
 import Register from '../views/register.vue'
+import JoinQiyiweixin from '../views/joinQiyiweixin.vue'
 import axios from 'axios'
 
 // 2. 定义一些路由
@@ -28,6 +29,15 @@ const routes = [
         path: "/about",
         name: "about",
         component: About,
+        meta: {
+            requireAuth: true,
+        },
+    },
+    
+    {
+        path: "/joinQiyiweixin",
+        name: "joinQiyiweixin",
+        component: JoinQiyiweixin,
         meta: {
             requireAuth: true,
         },

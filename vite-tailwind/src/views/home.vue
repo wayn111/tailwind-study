@@ -1,21 +1,11 @@
 <template>
-    <div class="p-5 h-screen w-full text-center">
-        <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" :ellipsis="false"
-            @select="handleSelect">
-            <div class="flex-grow" />
-            <el-menu-item index="home">主页</el-menu-item>
-            <el-sub-menu index="2-4">
-                <template #title>我的空间</template>
-                <el-menu-item index="about">关于</el-menu-item>
-                <el-menu-item index="logout">退出登录</el-menu-item>
-            </el-sub-menu>
+    <div class="p-5 h-screen w-full">
+        <Menu path="home"/>
 
-        </el-menu>
-
-        <h1 class="text-2xl font-bold mt-4">
+        <h1 class="text-2xl font-bold mt-4 text-center">
             欢迎来到个人主页
         </h1>
-        <p class="leading-relaxed mt-2">这里是你的个人信息配置页面，你可以直接修改配置点击提交就会立即生效</p>
+        <p class="leading-relaxed mt-2  text-center">这里是你的个人信息配置页面，你可以直接修改配置点击提交就会立即生效</p>
         <el-form ref="formRef" :rules="rules" :label-position="'top'" :model="formLabelAlign" class="mt-3"
             :size="'large'">
             <el-form-item label="用户名称" prop="username">
@@ -60,6 +50,7 @@
 </template>
 <script setup>
 import { reactive, ref, onMounted } from 'vue'
+import Menu from '../components/Menu.vue'
 import { ElMessage, ElMessageBox } from 'element-plus'
 import { getUserInfo, updateUserInfo } from '../api/index'
 import { useRouter, useRoute } from 'vue-router'
@@ -121,10 +112,6 @@ const submitForm = async () => {
                     ElMessage.success('更新成功')
                 })
                 .catch(() => {
-                    ElMessage({
-                        type: 'info',
-                        message: 'Delete canceled',
-                    })
                 })
         } else {
             console.log('error submit!', fields)
