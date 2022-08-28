@@ -60,7 +60,7 @@
 </template>
 <script setup>
 import { reactive, ref, onMounted } from 'vue'
-import { ElMessage, ElMessageBox, ElLoading } from 'element-plus'
+import { ElMessage, ElMessageBox } from 'element-plus'
 import { getUserInfo, updateUserInfo } from '../api/index'
 import { useRouter, useRoute } from 'vue-router'
 import { removeToken } from '../util/auth'
