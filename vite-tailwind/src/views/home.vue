@@ -43,7 +43,7 @@
             </el-form-item>
             <el-form-item class="btn">
                 <el-affix position="bottom" :offset="20">
-                    <el-button size="large" round @click="submitForm()">点击提交</el-button>
+                    <el-button size="large" type="success" class="submit-but" round @click="submitForm()">点击提交</el-button>
                 </el-affix>
             </el-form-item>
         </el-form>
@@ -168,5 +168,16 @@ const handleSelect = (key, keyPath) => {
 
 .btn :deep() .el-form-item__content {
     justify-content: right;
+}
+
+.submit-but {
+    background-color: #67c23a;
+}
+
+.submit-but:hover, .submit-but:focus {
+    color: var(--el-button-hover-text-color);
+    border-color: var(--el-button-hover-border-color);
+    background-color: var(--el-button-hover-bg-color);
+    outline: none;
 }
 </style>

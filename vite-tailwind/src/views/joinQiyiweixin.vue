@@ -54,10 +54,11 @@
                             </div>
                             <div class="flex-grow pl-4">
                                 <h2 class="font-medium title-font text-sm text-gray-900 mb-1 tracking-wider">第三步</h2>
-                                <p class="leading-relaxed">加入企业后，微信扫码关注oa互助应用公众号</p>
+                                <p class="leading-relaxed">加入企业后，微信扫码关注oa互助应用公众号, 打开接受企业消息按钮</p>
                                 <div>
                                     <img class="object-cover object-center w-3/5"
                                         src="https://wework.qpic.cn/wwpic/890839_LDx9TP71Q46Ywes_1661693891/0" />
+                                    <img class="mt-4 object-cover object-center w-3/5" src="../assets/gonozhonghao.jpg" />
                                 </div>
                             </div>
                         </div>
@@ -74,11 +75,7 @@
                             </div>
                             <div class="flex-grow pl-4">
                                 <h2 class="font-medium title-font text-sm text-gray-900 mb-1 tracking-wider">第四步</h2>
-                                <p class="leading-relaxed">关注公众号页面，打开接受企业消息按钮</p>
-                                <div>
-                                    <img class="object-cover object-center w-3/5"
-                                        src="../assets/gonozhonghao.jpg" />
-                                </div>
+                                <p class="leading-relaxed">联系管理员获取企业微信账号，填写到个人配置中</p>
                             </div>
                         </div>
                         <div class="flex relative">
