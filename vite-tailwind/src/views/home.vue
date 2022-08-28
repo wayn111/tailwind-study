@@ -9,33 +9,47 @@
                 <el-menu-item index="about">关于</el-menu-item>
                 <el-menu-item index="logout">退出登录</el-menu-item>
             </el-sub-menu>
-            
+
         </el-menu>
 
         <h1 class="text-2xl font-bold mt-4">
             欢迎来到个人主页
         </h1>
-        <p class="leading-relaxed mt-4">这里是你的个人信息配置页面，你可以直接修改配置点击提交就会立即生效</p>
-        <el-form ref="formRef" :rules="rules" :label-position="'top'" :model="formLabelAlign" class="mt-5"
+        <p class="leading-relaxed mt-2">这里是你的个人信息配置页面，你可以直接修改配置点击提交就会立即生效</p>
+        <el-form ref="formRef" :rules="rules" :label-position="'top'" :model="formLabelAlign" class="mt-3"
             :size="'large'">
+            <el-form-item label="用户名称" prop="username">
+                <el-input v-model="formLabelAlign.username" disabled />
+            </el-form-item>
             <el-form-item label="工号" prop="jobNo">
-                <el-input v-model="formLabelAlign.jobNo" />
+                <el-input v-model="formLabelAlign.jobNo" placeholder="请填写你的工号" />
             </el-form-item>
             <el-form-item label="oa token" prop="token">
-                <el-input v-model="formLabelAlign.token" />
+                <el-input v-model="formLabelAlign.token" placeholder="请填写你oa系统token" />
             </el-form-item>
-            <el-form-item label="通知类型" prop="notifyTypeList">
+            <el-alert type="success" class="text-left" show-icon :closable="true">
+                <h1 class="font-bold notify-alert">通知类型</h1>
+                <p>飞书：发送通知到飞书群中</p>
+                <p>邮箱：发送通知到指定邮箱</p>
+                <p>企业微信账号：下载企业微信，加入我的企业，可以再微信中接受私聊消息</p>
+            </el-alert>
+            <el-form-item label="通知类型" class="mt-3" prop="notifyTypeList">
                 <el-checkbox-group v-model="formLabelAlign.notifyTypeList">
                     <el-checkbox label="feishu_group" size="large">飞书</el-checkbox>
                     <el-checkbox label="email" size="large">邮箱</el-checkbox>
                     <el-checkbox label="qiyeweixin" size="large">企业微信账号</el-checkbox>
                 </el-checkbox-group>
             </el-form-item>
+            <el-form-item label="邮箱">
+                <el-input v-model="formLabelAlign.email" placeholder="通知类型选邮箱时，请填写邮箱" />
+            </el-form-item>
             <el-form-item label="企业微信账号">
-                <el-input v-model="formLabelAlign.qiyeweixinAccount" />
+                <el-input v-model="formLabelAlign.qiyeweixinAccount" placeholder="通知类型选企业微信时，联系管理员获取" />
             </el-form-item>
             <el-form-item>
-                <el-button size="large" round @click="submitForm()">点击提交</el-button>
+                    <el-affix position="bottom" :offset="20">
+                        <el-button size="large" round @click="submitForm()">点击提交</el-button>
+                    </el-affix>
             </el-form-item>
         </el-form>
     </div>
@@ -55,6 +69,7 @@ let formLabelAlign = reactive({
     token: '',
     qiyeweixinAccount: '',
     notifyType: '',
+    email: '',
     notifyTypeList: []
 })
 
@@ -67,6 +82,7 @@ onMounted(async () => {
     formLabelAlign.qiyeweixinAccount = resp.data.qiyeweixinAccount || ''
     formLabelAlign.token = resp.data.token || ''
     formLabelAlign.username = resp.data.username || ''
+    formLabelAlign.email = resp.data.email || ''
 })
 
 const rules = reactive({
@@ -143,8 +159,12 @@ const handleSelect = (key, keyPath) => {
 
 </script>
 
-<style>
+<style scoped>
 .el-form--large.el-form--label-top .el-form-item .el-form-item__label {
     font-size: 20px;
+}
+
+.notify-alert {
+    font-size: 1rem;
 }
 </style>

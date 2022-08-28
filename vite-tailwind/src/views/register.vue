@@ -32,6 +32,12 @@ async function userRegister() {
     }
 }
 
+function goLogin() {
+    router.push({
+        name: 'login'
+    })
+}
+
 
 </script>
 
@@ -56,7 +62,9 @@ async function userRegister() {
                 </div>
                 <button @click="userRegister"
                     class="text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg">注册</button>
-                <p class="text-xs text-gray-500 mt-4 text-right">放心，本系统不会明文存储您的密码.</p>
+                <p class="text-xs text-gray-500 mt-2 text-right">放心，本系统不会明文存储您的密码.</p>
+                <p class="text-ls text-gray-500 underline decoration-indigo-600 mt-4 text-right" @click="goLogin">返回登录
+                </p>
             </div>
         </div>
     </section>
