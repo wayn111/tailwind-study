@@ -25,7 +25,8 @@
                 <h1 class="font-bold title-alert">通知类型说明</h1>
                 <p>飞书：发送通知到飞书群中</p>
                 <p>邮箱：发送通知到指定邮箱</p>
-                <p @click="goQiyeweixin" class="cursor-pointer underline decoration-dashed decoration-sky-500  underline-offset-4">
+                <p @click="goQiyeweixin"
+                    class="cursor-pointer underline decoration-dashed decoration-sky-500  underline-offset-4">
                     企业微信账号：下载企业微信，加入我的企业，可以在微信中接受私聊消息，点击查看教程</p>
             </el-alert>
             <el-form-item label="通知类型" class="mt-3" prop="notifyTypeList">
@@ -38,12 +39,17 @@
             <el-form-item label="邮箱">
                 <el-input v-model="formLabelAlign.email" placeholder="通知类型选邮箱时，请填写邮箱" />
             </el-form-item>
-            <el-form-item label="企业微信账号">
-                <el-input v-model="formLabelAlign.qiyeweixinAccount" placeholder="通知类型选企业微信时，联系管理员获取" />
+            <el-alert type="success" class="text-left" show-icon :closable="true">
+                <h1 class="font-bold title-alert">企业微信账号获取方式</h1>
+                <p class="cursor-pointer underline decoration-dashed decoration-sky-500  underline-offset-4">加入企业微信成功后，直接点击该链接，输入手机号即可获得</p>
+            </el-alert>
+            <el-form-item label="企业微信账号" class="mt-3">
+                <el-input v-model="formLabelAlign.qiyeweixinAccount" placeholder="通知类型选企业微信时，联系管理员获取"/>
             </el-form-item>
             <el-form-item class="btn">
                 <el-affix position="bottom" :offset="20">
-                    <el-button size="large" type="success" class="submit-but" round @click="submitForm()">点击提交</el-button>
+                    <el-button size="large" type="success" class="submit-but" round @click="submitForm()">点击提交
+                    </el-button>
                 </el-affix>
             </el-form-item>
         </el-form>
@@ -174,7 +180,8 @@ const handleSelect = (key, keyPath) => {
     background-color: #67c23a;
 }
 
-.submit-but:hover, .submit-but:focus {
+.submit-but:hover,
+.submit-but:focus {
     color: var(--el-button-hover-text-color);
     border-color: var(--el-button-hover-border-color);
     background-color: var(--el-button-hover-bg-color);
