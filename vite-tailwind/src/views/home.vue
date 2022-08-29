@@ -39,12 +39,14 @@
             <el-form-item label="邮箱">
                 <el-input v-model="formLabelAlign.email" placeholder="通知类型选邮箱时，请填写邮箱" />
             </el-form-item>
-            <el-alert type="success" class="text-left" show-icon :closable="true">
+            <el-alert v-if="!formLabelAlign.qiyeweixinAccount" type="success" class="text-left" show-icon :closable="true">
                 <h1 class="font-bold title-alert">企业微信账号获取方式</h1>
-                <p class="cursor-pointer underline decoration-dashed decoration-sky-500  underline-offset-4">加入企业微信成功后，直接点击该链接，输入手机号即可获得</p>
+                <p @click="getQiyeweixinAccount"
+                    class="cursor-pointer underline decoration-dashed decoration-sky-500  underline-offset-4">
+                    加入企业微信成功后，点击该链接，输入手机号即可获得</p>
             </el-alert>
             <el-form-item label="企业微信账号" class="mt-3">
-                <el-input v-model="formLabelAlign.qiyeweixinAccount" placeholder="通知类型选企业微信时，联系管理员获取"/>
+                <el-input v-model="formLabelAlign.qiyeweixinAccount" placeholder="通知类型选企业微信时，点击上方获取" />
             </el-form-item>
             <el-form-item class="btn">
                 <el-affix position="bottom" :offset="20">
@@ -58,10 +60,9 @@
 <script setup>
 import { reactive, ref, onMounted } from 'vue'
 import Menu from '../components/Menu.vue'
-import { ElMessage, ElMessageBox } from 'element-plus'
-import { getUserInfo, updateUserInfo } from '../api/index'
+import { ElMessage, ElMessageBox, ElLoading } from 'element-plus'
+import { getUserInfo, updateUserInfo, getQiyeweixinAccountInfo } from '../api/index'
 import { useRouter, useRoute } from 'vue-router'
-import { removeToken } from '../util/auth'
 
 const router = useRouter()
 const route = useRoute()
@@ -132,33 +133,27 @@ function goQiyeweixin() {
     })
 }
 
-const index = 'home'
-let activeIndex = ref(index)
-const handleSelect = (key, keyPath) => {
-    if (key === 'logout') {
-        ElMessageBox.confirm(
-            '你确定要退出登录吗？',
-            'Warning',
-            {
-                confirmButtonText: 'OK',
-                cancelButtonText: 'Cancel',
-                type: 'warning',
+function getQiyeweixinAccount() {
+    ElMessageBox.prompt('请输入你的手机号', 'Tip', {
+        confirmButtonText: 'OK',
+        cancelButtonText: 'Cancel',
+        inputPattern: /^1[3,5,7,8,9][0-9]{9}$/,
+        inputErrorMessage: '手机号格式错误',
+    })
+        .then(async ({ value }) => {
+            const loadingInstance = ElLoading.service({})
+            try {
+                const resp = await getQiyeweixinAccountInfo({mobile: value})
+                formLabelAlign.qiyeweixinAccount = resp.data.userid
+                ElMessage.success('获取企业微信账号成功')
+            } catch (error) {
+                log.error(error)
+            } finally {
+                loadingInstance.close()
             }
-        )
-            .then(async () => {
-                removeToken()
-                router.push({
-                    name: 'login'
-                })
-            })
-            .catch(() => {
-            })
-
-    } else {
-        router.push({
-            name: key
         })
-    }
+        .catch(() => {
+        })
 }
 
 </script>
@@ -174,17 +169,5 @@ const handleSelect = (key, keyPath) => {
 
 .btn :deep() .el-form-item__content {
     justify-content: right;
-}
-
-.submit-but {
-    background-color: #67c23a;
-}
-
-.submit-but:hover,
-.submit-but:focus {
-    color: var(--el-button-hover-text-color);
-    border-color: var(--el-button-hover-border-color);
-    background-color: var(--el-button-hover-bg-color);
-    outline: none;
 }
 </style>

@@ -43,9 +43,21 @@ export function updateUserInfo(data) {
         //请求方法
         method: 'put',
         data
+
     })
 }
 
+//获取用户企业微信账号
+export function getQiyeweixinAccountInfo(params) {
+    return service({
+        //请求路径
+        url: `/api/user/qiyeweixin/userid`,
+        //请求方法
+        method: 'get',
+        params
+        
+    })
+}
 
 //上传资料文件
 export function uploadData(data) {

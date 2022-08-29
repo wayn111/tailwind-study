@@ -75,7 +75,7 @@
                             </div>
                             <div class="flex-grow pl-4">
                                 <h2 class="font-medium title-font text-sm text-gray-900 mb-1 tracking-wider">第四步</h2>
-                                <p class="leading-relaxed">联系管理员获取企业微信账号，填写到个人配置中</p>
+                                <p class="leading-relaxed">回到主页配置，点击获取企业微信账号链接，填写手机号，直接获取</p>
                             </div>
                         </div>
                         <div class="flex relative">
