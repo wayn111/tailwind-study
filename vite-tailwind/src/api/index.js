@@ -31,7 +31,7 @@ export function getUserInfo() {
         //请求路径
         url: `/api/user/info`,
         //请求方法
-        method: 'get'	
+        method: 'get'
     })
 }
 
@@ -55,7 +55,18 @@ export function getQiyeweixinAccountInfo(params) {
         //请求方法
         method: 'get',
         params
-        
+
+    })
+}
+
+//获取用户企业微信邀请码
+export function getQiyeweixinInviteCode(params) {
+    return service({
+        //请求路径
+        url: `/api/user/qiyeweixin/getInviteCode`,
+        //请求方法
+        method: 'get',
+        params
     })
 }
 

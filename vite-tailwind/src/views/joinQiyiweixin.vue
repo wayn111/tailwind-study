@@ -36,8 +36,7 @@
                                 <h2 class="font-medium title-font text-sm text-gray-900 mb-1 tracking-wider">第二步</h2>
                                 <p class="leading-relaxed">扫码加入我的企业</p>
                                 <div>
-                                    <img class="object-cover object-center w-3/5"
-                                        src="https://work.weixin.qq.com/wework_admin/genqrcode?action=join&vcode=d32e526fc7c796a88ac1a4baed0f274f&r=hb_share_mng_index" />
+                                    <img class="object-cover object-center w-3/5" :src="join_qrcode" />
                                 </div>
                             </div>
                         </div>
@@ -57,8 +56,9 @@
                                 <p class="leading-relaxed">加入企业后，微信扫码关注oa互助应用公众号, 打开接受企业消息按钮</p>
                                 <div>
                                     <img class="object-cover object-center w-3/5"
-                                        src="https://wework.qpic.cn/wwpic/890839_LDx9TP71Q46Ywes_1661693891/0" />
-                                    <img class="mt-4 object-cover object-center w-3/5" src="../assets/gonozhonghao.jpg" />
+                                        src="../assets/qrcode_258.png" />
+                                    <img class="mt-4 object-cover object-center w-3/5"
+                                        src="../assets/gonozhonghao.jpg" />
                                 </div>
                             </div>
                         </div>
@@ -102,13 +102,25 @@
 
 </template>
 <script setup>
-import { reactive, ref, onMounted } from 'vue'
+import { ref, onMounted } from 'vue'
+import { getQiyeweixinInviteCode } from '../api/index'
 import { useRouter, useRoute } from 'vue-router'
 import { removeToken } from '../util/auth'
 import { ElMessage, ElMessageBox, ElLoading } from 'element-plus'
 import Menu from '../components/Menu.vue'
+let join_qrcode = ref();
+
+// 生命周期钩子
+onMounted(async () => {
+    const resp = await getQiyeweixinInviteCode({mobile: 13617159841})
+    console.log(join_qrcode, resp)
+    join_qrcode.value = resp.data.join_qrcode
+})
+
+
 
 </script>
 
 <style>
+
 </style>
