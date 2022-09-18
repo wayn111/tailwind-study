@@ -70,6 +70,27 @@ export function getQiyeweixinInviteCode(params) {
     })
 }
 
+// 查看oa配置
+export function getConifg() {
+    return service({
+        //请求路径
+        url: `/api/config`,
+        //请求方法
+        method: 'get'
+    })
+}
+
+// 修改oa配置
+export function updateConifg(data) {
+    return service({
+        //请求路径
+        url: `/api/config`,
+        //请求方法
+        method: 'post',
+        data
+    })
+}
+
 //上传资料文件
 export function uploadData(data) {
     return fetch({

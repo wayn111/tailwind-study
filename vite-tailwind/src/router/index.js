@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Home from '../views/home.vue'
 import About from '../views/about.vue'
+import Config from '../views/config.vue'
 import Login from '../views/login.vue'
 import Register from '../views/register.vue'
 import JoinQiyiweixin from '../views/joinQiyiweixin.vue'
@@ -33,7 +34,14 @@ const routes = [
             requireAuth: true,
         },
     },
-    
+    {
+        path: "/config",
+        name: "config",
+        component: Config,
+        meta: {
+            requireAuth: true,
+        },
+    },
     {
         path: "/joinQiyiweixin",
         name: "joinQiyiweixin",

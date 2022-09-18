@@ -47,6 +47,7 @@ const handleSelect = (key, keyPath) => {
       <template #title>我的空间</template>
       <el-menu-item index="about">关于</el-menu-item>
       <el-menu-item index="joinQiyiweixin">加入企业微信</el-menu-item>
+      <el-menu-item index="config">OA配置</el-menu-item>
       <el-menu-item index="logout">退出登录</el-menu-item>
     </el-sub-menu>
 
