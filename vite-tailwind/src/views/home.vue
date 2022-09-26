@@ -39,7 +39,8 @@
             <el-form-item label="邮箱">
                 <el-input v-model="formLabelAlign.email" placeholder="通知类型选邮箱时，请填写邮箱" />
             </el-form-item>
-            <el-alert v-if="!formLabelAlign.qiyeweixinAccount" type="success" class="text-left" show-icon :closable="true">
+            <el-alert v-if="!formLabelAlign.qiyeweixinAccount" type="success" class="text-left" show-icon
+                :closable="true">
                 <h1 class="font-bold title-alert">企业微信账号获取方式</h1>
                 <p @click="getQiyeweixinAccount"
                     class="cursor-pointer underline decoration-dashed decoration-sky-500  underline-offset-4">
@@ -143,7 +144,7 @@ function getQiyeweixinAccount() {
         .then(async ({ value }) => {
             const loadingInstance = ElLoading.service({})
             try {
-                const resp = await getQiyeweixinAccountInfo({mobile: value})
+                const resp = await getQiyeweixinAccountInfo({ mobile: value })
                 formLabelAlign.qiyeweixinAccount = resp.data.userid
                 ElMessage.success('获取企业微信账号成功')
             } catch (error) {
@@ -156,6 +157,15 @@ function getQiyeweixinAccount() {
         })
 }
 
+
+const NOTIFICATION_TITLE = 'Title'
+const NOTIFICATION_BODY = 'Notification from the Renderer process. Click to log to console.'
+const CLICK_MESSAGE = 'Notification clicked!'
+
+new Notification(NOTIFICATION_TITLE, { body: NOTIFICATION_BODY })
+    .onclick = () => document.getElementById("output").innerText = CLICK_MESSAGE
+
+shell.open();
 </script>
 
 <style scoped>
