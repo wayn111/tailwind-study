@@ -93,7 +93,7 @@ export function updateConifg(data) {
 
 //上传资料文件
 export function uploadData(data) {
-    return fetch({
+    return service({
         url: `/api/user/uploadData`,
         method: 'post',
         //上传表单文件，请求头中Content-Type设置为multipart/form-data，数据类型为表单上传文件
@@ -109,10 +109,12 @@ export function uploadData(data) {
         }
     })
 }
+
+
 //下载文件
-export function downloadData(params) {
-    return fetch({
-        url: `/api/user/downloadData`,
+export function downloadAttendance(params) {
+    return service({
+        url: `/api/user/downloadAttendance`,
         method: 'get',
         params,
         //设置响应的数据类型，默认为json，其值有：'arraybuffer', 'document', 'json', 'text', 'stream','blob'
