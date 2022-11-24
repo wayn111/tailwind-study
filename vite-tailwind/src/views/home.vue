@@ -1,6 +1,6 @@
 <template>
     <div class="p-5 h-screen w-full">
-        <Menu path="home" />
+        <Menu path="home" ref="menuRef" />
 
         <h1 class="text-2xl font-bold mt-4 text-center">
             欢迎来到个人主页
@@ -20,6 +20,16 @@
             </el-alert>
             <el-form-item label="oa token" class="mt-3" prop="token">
                 <el-input v-model="formLabelAlign.token" placeholder="请填写你oa系统token" />
+            </el-form-item>
+            <el-form-item label="考勤邮件发送" class="mt-3" prop="token">
+                <el-switch v-model="formLabelAlign.sendAttendanceSwitch" :active-value="1" :inactive-valu="0"
+                    inline-prompt active-text="是" inactive-text="否" @change="change" />
+                <span
+                    class="ml-2">
+                    每月1号, 发送我的考勤</span>
+                <span @click="downloadAttendance"
+                    class="cursor-pointer underline decoration-dashed decoration-sky-500 underline-offset-4 ml-4">
+                    下载我的考勤邮件</span>
             </el-form-item>
             <el-alert type="success" class="text-left" show-icon :closable="true">
                 <h1 class="font-bold title-alert">通知类型说明</h1>
@@ -59,7 +69,7 @@
     </div>
 </template>
 <script setup>
-import { reactive, ref, onMounted } from 'vue'
+import { reactive, ref, onMounted, onBeforeMount } from 'vue'
 import Menu from '../components/Menu.vue'
 import { ElMessage, ElMessageBox, ElLoading } from 'element-plus'
 import { getUserInfo, updateUserInfo, getQiyeweixinAccountInfo } from '../api/index'
@@ -74,11 +84,12 @@ let formLabelAlign = reactive({
     qiyeweixinAccount: '',
     notifyType: '',
     email: '',
-    notifyTypeList: []
+    notifyTypeList: [],
+    sendAttendanceSwitch: 0
 })
 
 // 生命周期钩子
-onMounted(async () => {
+onBeforeMount(async () => {
     const resp = await getUserInfo();
     formLabelAlign.jobNo = resp.data.jobNo || ''
     formLabelAlign.notifyType = resp.data.notifyType || ''
@@ -87,6 +98,7 @@ onMounted(async () => {
     formLabelAlign.token = resp.data.token || ''
     formLabelAlign.username = resp.data.username || ''
     formLabelAlign.email = resp.data.email || ''
+    formLabelAlign.sendAttendanceSwitch = parseInt(resp.data.sendAttendanceSwitch)
 })
 
 const rules = reactive({
@@ -102,6 +114,7 @@ const rules = reactive({
     ]
 })
 const formRef = ref();
+const menuRef = ref();
 const submitForm = async () => {
     if (!formRef.value) return
     await formRef.value.validate((valid, fields) => {
@@ -126,6 +139,10 @@ const submitForm = async () => {
             console.log('error submit!', fields)
         }
     })
+}
+
+function downloadAttendance() {
+    menuRef.value.handleSelect('downloadAttendance')
 }
 
 function goQiyeweixin() {
@@ -156,6 +173,11 @@ function getQiyeweixinAccount() {
         .catch(() => {
         })
 }
+
+
+function change(val) {
+}
+
 
 </script>
 

@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from 'vue'
+import { ref, defineExpose } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
 import { removeToken } from '../util/auth'
 import { downloadAttendance } from '../api/index'
@@ -46,6 +46,10 @@ const handleSelect = (key, keyPath) => {
     })
   }
 }
+
+defineExpose({
+  handleSelect
+})
 </script>
 
 <template>
