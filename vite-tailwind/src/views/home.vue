@@ -98,7 +98,7 @@ onBeforeMount(async () => {
     formLabelAlign.token = resp.data.token || ''
     formLabelAlign.username = resp.data.username || ''
     formLabelAlign.email = resp.data.email || ''
-    formLabelAlign.sendAttendanceSwitch = parseInt(resp.data.sendAttendanceSwitch)
+    formLabelAlign.sendAttendanceSwitch = parseInt(resp.data.sendAttendanceSwitch) || 0
 })
 
 const rules = reactive({
